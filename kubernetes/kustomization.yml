@@ -1,0 +1,10 @@
+resources:
+  - worker.yml
+
+secretGenerator:
+  - name: pg-backup-secrets
+    files:
+      - secrets.txt
+
+generatorOptions:
+  disableNameSuffixHash: true
