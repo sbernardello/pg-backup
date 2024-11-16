@@ -13,6 +13,7 @@ WORKDIR /app
 
 # Add the backup script
 COPY backup.sh /app/backup.sh
+COPY README.md /app/README.md
 RUN chmod +x /app/backup.sh
 
 # Set default command

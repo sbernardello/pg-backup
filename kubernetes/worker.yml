@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: pg-backup
-        image: your-docker-registry/pg-backup:latest
+        image: sbernardellodxc/pg-backup:latest
         envFrom:
         - secretRef:
             name: pg-backup-secrets

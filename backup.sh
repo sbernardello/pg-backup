@@ -20,7 +20,7 @@ TEMP_DIR=$(mktemp -d)
 trap 'rm -rf "$TEMP_DIR"' EXIT
 
 # Perform the database dump
-echo "Dumping database..."
+echo "Dumping database [$PGDATABASE]..."
 if [ -z "${PGTABLES}" ]; then
   # Dump the entire database into a single file
   BACKUP_FILE="${BACKUP_PREFIX}_${TIMESTAMP}_full.sql.gz"

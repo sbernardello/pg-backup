@@ -8,22 +8,22 @@ After that will push the backup to an S3 bucket.
 ## Environment Variables
 
 ```bash
-PGHOST             = Database hostname
-PGPORT             = Database port number
-PGUSER             = User name
-PGPASSWORD         = Password
-PGDATABASE         = Environment variable PGDATABASE is required
-S3_BUCKET          = Environment variable S3_BUCKET is required
-BACKUP_PREFIX      = S3 bucket prefix
-AWS_REGION         = Environment variable AWS_REGION is required
-PGDUMP_COMPRESSION = pgdump compression level
-AWS_ACCESS_KEY     = AWS access key
-AWS_ACCESS_SECRET  = AWS access secret
+PGHOST                = Database hostname
+PGPORT                = Database port number
+PGUSER                = User name
+PGPASSWORD            = Password
+PGDATABASE            = Environment variable PGDATABASE is required
+S3_BUCKET             = Environment variable S3_BUCKET is required
+BACKUP_PREFIX         = S3 bucket prefix
+AWS_REGION            = Environment variable AWS_REGION is required
+PGDUMP_COMPRESSION    = pgdump compression level
+AWS_ACCESS_KEY_ID     = AWS access key
+AWS_SECRET_ACCESS_KEY = AWS access secret
 ```
 
-## Usage Examples
+## Usage Examples
 
-1. Use Default Compression Level
+### Use Default Compression Level
 
 The script defaults level 9 pg_dump compression (PGDUMP_COMPRESSION=9):
 
@@ -31,7 +31,7 @@ The script defaults level 9 pg_dump compression (PGDUMP_COMPRESSION=9):
 ./backup.sh
 ```
 
-2. Set a Specific Compression Level
+### Set a Specific Compression Level
 
 To apply maximum compression:
 
@@ -40,7 +40,7 @@ export PGDUMP_COMPRESSION=9
 ./backup.sh
 ```
 
-3. Dump Specific Tables with Compression
+### Dump Specific Tables with Compression
 
 ```bash
 export PGTABLES="table1,table2"
@@ -49,4 +49,4 @@ export PGDUMP_COMPRESSION=5
 ./backup.sh
 ```
 
-This will dump table1 and table2 with pg_dump compression level 5.
+This will dump `table1` and `table2` with pg_dump compression level `5`.

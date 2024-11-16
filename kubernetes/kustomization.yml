@@ -3,8 +3,8 @@ resources:
 
 secretGenerator:
   - name: pg-backup-secrets
-    files:
+    envs:
       - secrets.txt
-
+    type: Opaque
 generatorOptions:
   disableNameSuffixHash: true
