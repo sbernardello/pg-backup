@@ -1,24 +1,25 @@
 # pg backup image
 
-## Description
+## Description
 
 This image will run a backup of a postgres database, a full backup or just a set of tables.
 After that will push the backup to an S3 bucket.
 
-## Environment Variables
+## Environment Variables
 
 ```bash
-PGHOST                = Database hostname
-PGPORT                = Database port number
-PGUSER                = User name
-PGPASSWORD            = Password
-PGDATABASE            = Environment variable PGDATABASE is required
-S3_BUCKET             = Environment variable S3_BUCKET is required
-BACKUP_PREFIX         = S3 bucket prefix
-AWS_REGION            = Environment variable AWS_REGION is required
-PGDUMP_COMPRESSION    = pgdump compression level
-AWS_ACCESS_KEY_ID     = AWS access key
-AWS_SECRET_ACCESS_KEY = AWS access secret
+PGHOST                = Database hostname (required)
+PGPORT                = Database port number (optional)
+PGUSER                = User name (required)
+PGPASSWORD            = Password (required)
+PGDATABASE            = Environment variable PGDATABASE (required)
+PGTABLES              = If set only the tables in this variable will be dumped (optional)
+S3_BUCKET             = Environment variable S3_BUCKET (required)
+BACKUP_PREFIX         = S3 bucket file name prefix (optional)
+AWS_REGION            = Environment variable AWS_REGION (required)
+PGDUMP_COMPRESSION    = pgdump compression level (optional)
+AWS_ACCESS_KEY_ID     = AWS access key (required)
+AWS_SECRET_ACCESS_KEY = AWS access secret (required)
 ```
 
 ## Usage Examples
