@@ -7,16 +7,18 @@ set -e
 : "${PGUSER:?Environment variable PGUSER is required}"
 : "${PGPASSWORD:?Environment variable PGPASSWORD is required}"
 : "${PGDATABASE:?Environment variable PGDATABASE is required}"
-: "${S3_BUCKET:?Environment variable S3_BUCKET is required}"
-: "${BACKUP_PREFIX:=backup}"
-: "${AWS_REGION:?Environment variable AWS_REGION is required}"
 : "${PGDUMP_COMPRESSION:=9}" # Default compression level (9 = max compression)
+: "${S3_BUCKET:?Environment variable S3_BUCKET is required}"
+: "${S3_BUCKET_FOLDER:=''}"
+: "${AWS_REGION:?Environment variable AWS_REGION is required}"
+: "${BACKUP_PREFIX:=backup}"
+: "${USE_ENDPOINT:=false}"
 
 # Generate timestamp
-TIMESTAMP=$(date +%Y%m%d%H%M%S)
+TIMESTAMP="$(date +%Y%m%d%H%M%S)"
 
 # Create a temporary directory for table dumps
-TEMP_DIR=$(mktemp -d)
+TEMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TEMP_DIR"' EXIT
 
 # Perform the database dump
@@ -41,8 +43,12 @@ fi
 
 # Upload to S3
 echo "Uploading to S3..."
-aws s3 cp "$BACKUP_FILE" "s3://$S3_BUCKET/$BACKUP_FILE" --region "$AWS_REGION"
-
+if [ "$USE_ENDPOINT" == "true" ]; then
+  echo "Using compatible endpoind to upload..."
+  aws s3 cp "$BACKUP_FILE" --endpoint="https://$S3_BUCKET" "s3://$S3_BUCKET_FOLDER$BACKUP_FILE"  --region "$AWS_REGION" 
+else
+  aws s3 cp "$BACKUP_FILE" "s3://$S3_BUCKET/$BACKUP_FILE" --region "$AWS_REGION"
+fi
 # Cleanup
 rm -f "$BACKUP_FILE"
 
