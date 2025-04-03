@@ -79,9 +79,6 @@ This will create a backup of the `users` table and upload it to the specified S3
 
 ## Log Output
 
-Testing Jira integration
-https://tribridgehcm.atlassian.net/browse/SRVR-8642
-
 The script includes logging functionality that outputs messages to the console. Errors are logged as "ERROR:" prefixed messages.
 
 ## Conclusion
