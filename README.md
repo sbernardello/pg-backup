@@ -84,3 +84,4 @@ The script includes logging functionality that outputs messages to the console. 
 ## Conclusion
 
 This script provides a robust solution for automating PostgreSQL database backups to S3. By following the instructions in this README, you can easily configure and use it to meet your backup requirements.
+
